@@ -1,0 +1,30 @@
+[
+    {
+        "caption": "Preferences",
+        "children": [
+            {
+                "caption": "Package Settings",
+                "children": [
+                    {
+                        "caption": "Open in Git Repository",
+                        "children": [
+                            {
+                                "caption": "Settings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/Open in Git Repository/OpenInGitRepository.sublime-settings",
+                                    "default": "// Settings in here override those in \"OpenInGitRepository.sublime-settings\"\n\n{\n\t$0\n}\n"
+                                }
+                            },
+                        ],
+                        "id": "openingitrepository"
+                    }
+                ],
+                "id": "package-settings",
+                "mnemonic": "P"
+            }
+        ],
+        "id": "preferences",
+        "mnemonic": "n"
+    }
+]

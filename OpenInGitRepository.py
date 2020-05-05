@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 import sublime
 import sublime_plugin
 
+SETTINGS_FILE = 'OpenInGitRepository.sublime-settings'
 
 class OpenInGitRepositoryCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -51,9 +52,21 @@ class OpenInGitRepositoryCommand(sublime_plugin.WindowCommand):
     def _get_remote_url(self, path):
         output = subprocess.check_output(['git', '-C', path, 'remote', '-v'])
         output = output.decode('utf-8')
+
         if not output:
             return None
-        match = re.match(r'\w+\s(.+)(?= )', output)
+
+        remote = sublime.load_settings(SETTINGS_FILE).get('open_in_git_repository_remote')
+
+        for line in output.split('\n'):
+            if remote in line:
+                print('achou')
+                break
+        # print(line)
+        match = re.match(r'\w+\s(.+)(?= )', line)
+        print(match.group(1))
+
+        # print(match)
         return match.group(1)
 
     def _normalize_remote_url(self, url):
